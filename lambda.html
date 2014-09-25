@@ -1,0 +1,63 @@
+<script language="javascript">
+
+function succ(num){ 
+    return function(f){
+        return function(x){
+            return f(num(f)(x));
+        }
+    }
+}
+
+function czero(f){ 
+    return function(x){
+        return x;
+    }
+}
+
+function cnum(x){ 
+    var i,res;
+    res=czero;
+    for(i=1;i<=x;i++)
+        res=succ(res);
+    return res;
+}
+
+function inc(x){ 
+    return x+1;
+}
+
+function print(cnumber){ 
+    g=cnumber(inc)(0);
+    alert(g);
+    return g;
+}
+
+function plus(a){ 
+    return function(b){
+        return function(f){
+            return function(x){
+                return (a(f))((b(f))(x));
+            }
+        }
+    }
+}
+
+function multiply(a){ 
+    return function(b){
+        return function(f){
+            return a(b(f));
+        }
+    }
+}
+
+function power(a){ 
+    return function(b){
+        return b(a);
+    }
+}
+
+print(plus(cnum(13))(cnum(5))); // 18
+print(multiply(cnum(4))(cnum(5))); // 20
+print(power(cnum(2))(cnum(10))); // 1024
+
+</script>
