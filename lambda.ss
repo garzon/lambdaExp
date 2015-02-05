@@ -73,3 +73,14 @@
   (num->text 7) 
   (num->text 4)
   (num->text 8))) ; => 7+4+8 = 19
+
+(text->num 
+ (pow
+  (mul
+   (add
+    (num->text 1) 
+    (succ zero)
+    (num->text 3))
+   (succ zero)
+   (num->text 2))
+  (num->text 2))) ; => ((1+1+3)*(0+1)*2)^2 = 100
